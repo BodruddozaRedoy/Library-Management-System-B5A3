@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from 'express';
+import { bookRoutes } from './app/controllers/book.controller';
 // import { notesRoutes } from './app/controllers/notes.controller';
 // import { usersRoutes } from './app/controllers/user.controller';
 
@@ -8,8 +9,7 @@ app.use(express.json())
 
 
 
-// app.use("/notes", notesRoutes)
-// app.use("/users", usersRoutes)
+app.use("/api", bookRoutes)
 
 
 app.get('/', (req: Request, res: Response) => {

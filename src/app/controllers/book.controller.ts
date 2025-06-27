@@ -1,16 +1,66 @@
-import express, { Request, Response } from 'express'
-import { Book } from '../models/book.model'
+import express, { Request, Response } from "express";
+import { Book } from "../models/book.model";
 
-export const bookRoutes = express.Router()
+export const bookRoutes = express.Router();
+// create a book
+bookRoutes.post("/books", async (req: Request, res: Response) => {
+  const body = req.body;
 
-bookRoutes.post("/books", async (req:Request, res:Response) => {
-    const body = req.body
-
-    const user = await Book.create(body)
+  try {
+    const book = await Book.create(body);
 
     res.status(201).json({
-        success: true,
-        message: "User created successfully",
-        user
-    })
-})
+      success: true,
+      message: "Book created successfully",
+      data: book,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Validation failed",
+      error: error,
+    });
+    console.log({
+      message: "Validation failed",
+      success: false,
+      error: error,
+    });
+  }
+});
+
+// get all books
+bookRoutes.get("/books", async (req: Request, res: Response) => {
+  const { filter, sortBy, sort, limit } = req.query as {
+    filter?: string;
+    sortBy?: string;
+    sort?: string;
+    limit?: string;
+  };
+
+  try {
+    const filterQuery = filter ? { genre: filter } : {};
+    const sortField = sortBy || "createdAt";
+    const sortOrder = sort?.toLowerCase() === "asc" ? 1 : -1;
+    const resultLimit = limit ? parseInt(limit) : 10;
+
+    const books = await Book.find(filterQuery)
+      .sort({ [sortField]: sortOrder })
+      .limit(resultLimit);
+
+    res.status(200).json({
+      success: true,
+      message: "Books retrieved successfully",
+      data: books,
+    });
+
+  } catch (error: any) {
+    const errorMessage = error?.message || "Unknown error occurred";
+    res.status(400).json({
+      success: false,
+      message: "Validation failed",
+      error: errorMessage,
+    });
+    console.error(error);
+  }
+});
+

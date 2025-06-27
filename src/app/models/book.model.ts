@@ -8,7 +8,7 @@ const BookSchema = new mongoose.Schema<IBook>({
     genre: {type: String, required: true, trim: true},
     isbn: {type: String, required: true, trim: true},
     description: {type: String, required: true, trim: true},
-    copies: {type: Number, required: true, trim: true},
+    copies: {type: Number, required: true, trim: true, min: [0, 'Copies must be a positive number']},
     available: {type: Boolean, required: true, trim: true}
 },{
     versionKey: false,
