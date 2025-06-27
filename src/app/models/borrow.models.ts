@@ -7,4 +7,4 @@ const BorrowSchema = new mongoose.Schema<IBorrow>({
   dueDate: { type: Date, required: true },
 });
 
-const Borrow = model("Borrow", BorrowSchema)
+export const Borrow = model("Borrow", BorrowSchema)
