@@ -52,15 +52,32 @@ bookRoutes.get("/books", async (req: Request, res: Response) => {
       message: "Books retrieved successfully",
       data: books,
     });
-
   } catch (error: any) {
-    const errorMessage = error?.message || "Unknown error occurred";
     res.status(400).json({
       success: false,
       message: "Validation failed",
-      error: errorMessage,
+      error: error,
     });
     console.error(error);
   }
 });
 
+bookRoutes.get("/books/:bookId", async (req: Request, res: Response) => {
+  const { bookId } = req.params;
+  console.log(bookId)
+  try {
+    const book = await Book.findById(bookId)
+    res.status(200).json({
+      success: true,
+      message: 'Book retrieved successfully',
+      data: book,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Validation failed",
+      error: error,
+    });
+    console.error(error);
+  }
+});
