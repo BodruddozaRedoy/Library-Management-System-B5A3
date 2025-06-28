@@ -23,4 +23,10 @@ BookSchema.statics.updateAvailability = async function (bookId: string) {
   }
 };
 
+BookSchema.pre('save', function (next) {
+  this.available = this.copies > 0;
+  next();
+});
+
+
 export const Book = model<IBook, IBookModel>("Book", BookSchema)
