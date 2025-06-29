@@ -7,6 +7,12 @@ bookRoutes.post("/books", async (req: Request, res: Response) => {
   const body = req.body;
 
   try {
+    if(!body){
+      res.status(404).json({
+      success: false,
+      message: "Book details not found",
+    });
+    }
     const book = await Book.create(body);
 
     res.status(201).json({
@@ -20,11 +26,7 @@ bookRoutes.post("/books", async (req: Request, res: Response) => {
       message: "Validation failed",
       error: error,
     });
-    console.log({
-      message: "Validation failed",
-      success: false,
-      error: error,
-    });
+    console.log(error);
   }
 });
 
@@ -38,6 +40,12 @@ bookRoutes.get("/books", async (req: Request, res: Response) => {
   };
 
   try {
+    if(!req.query){
+      res.status(404).json({
+      success: false,
+      message: "Query not found",
+    });
+    }
     const filterQuery = filter ? { genre: filter } : {};
     const sortField = sortBy || "createdAt";
     const sortOrder = sort?.toLowerCase() === "asc" ? 1 : -1;
@@ -65,8 +73,14 @@ bookRoutes.get("/books", async (req: Request, res: Response) => {
 // get book by book id
 bookRoutes.get("/books/:bookId", async (req: Request, res: Response) => {
   const { bookId } = req.params;
-  console.log(bookId);
+  // console.log(bookId);
   try {
+    if(!bookId){
+      res.status(404).json({
+      success: false,
+      message: "Book id not found",
+    });
+    }
     const book = await Book.findById(bookId);
     res.status(200).json({
       success: true,
@@ -89,6 +103,12 @@ bookRoutes.put("/books/:bookId", async (req: Request, res: Response) => {
   const { copies, ...rest } = req.body;
 
   try {
+    if(!bookId || !copies){
+      res.status(404).json({
+      success: false,
+      message: "Please provide required data",
+    });
+    }
     const updateQuery: any = { ...rest };
     
     if (typeof copies === 'number') {
@@ -122,6 +142,12 @@ bookRoutes.put("/books/:bookId", async (req: Request, res: Response) => {
 bookRoutes.delete("/books/:bookId", async (req: Request, res: Response) => {
   const { bookId } = req.params;
   try {
+    if(!bookId){
+      res.status(404).json({
+      success: false,
+      message: "BookId not found",
+    });
+    }
     await Book.findByIdAndDelete(bookId);
     res.status(200).json({
       success: true,
