@@ -28,19 +28,13 @@ This **Library Management System** is built using **Express**, **TypeScript**, a
 - **dotenv**: Environment variable management.
 - **ESLint & Prettier**: Ensures consistent code style and quality.
 
-## Prerequisites
-To run this project locally, ensure you have the following installed:
-- **Node.js** (v16 or higher)
-- **MongoDB** (local or cloud instance, e.g., MongoDB Atlas)
-- **npm** (v8 or higher)
-
 ## Setup Instructions
 Follow these steps to set up and run the project locally:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/library-management-api.git
-   cd library-management-api
+   git clone https://github.com/BodruddozaRedoy/Library-Management-System-B5A3.git
+   cd library-management-System-b5a3
    ```
 
 2. **Install Dependencies**:
@@ -175,18 +169,11 @@ library-management-api/
 ├── tsconfig.json          # TypeScript configuration
 └── README.md              # Project documentation
 ```
-
-## Running Tests
-To run tests (if implemented):
-```bash
-npm test
 ```
 
 ## Deployment
 The API is deployed at: [Insert Live Deployment Link Here]
 
-## Video Explanation
-A short video explaining the key features and logic is available at: [Insert Public Video Link Here]
 
 ## Notes
 - The project strictly adheres to the provided API endpoints and response formats.
@@ -194,10 +181,6 @@ A short video explaining the key features and logic is available at: [Insert Pub
 - The aggregation pipeline is implemented for the borrowed books summary endpoint.
 - All code is written in TypeScript with proper type definitions for better maintainability.
 
-## Submission Details
-- **GitHub Repository**: [Insert GitHub Link Here]
-- **Live Deployment**: [Insert Live Deployment Link Here]
-- **Video Explanation**: [Insert Video Link Here]
-- **Deadline**: Targeting 60 marks (Jun 21, 2025, 11:59 PM)
+
 
 ##
