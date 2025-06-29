@@ -14,10 +14,8 @@ app.use("/api", bookRoutes)
 app.use("/api", borrowRoutes)
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Welcome to Note App');
+    res.send('Welcome to Learning Management App');
 });
 
 
 export default app;
-
-// mvc - model  , controller
