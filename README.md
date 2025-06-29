@@ -172,7 +172,7 @@ library-management-api/
 ```
 
 ## Deployment
-The API is deployed at: [Insert Live Deployment Link Here]
+The API is deployed at: https://library-management-system-b5-a3.vercel.app/
 
 
 ## Notes
